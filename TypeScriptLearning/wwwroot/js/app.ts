@@ -18,100 +18,43 @@ class Greeter {
 	stop() {
 		clearTimeout(this.timerToken);
 	}
-
 }
 
+class User {
+    private _name: string;
+    private _year: number;
 
-interface IUser {	
-	name: string;
-	age?: number;
-	getInfo(): void;
-	getClassName(): void;
+	public get name():string{
+		return this._name;
 }
 
-interface IMovable {
-
-	speed: number;
-	move(): void;
-}
-interface ICar extends IMovable {
-
-	fill(): void;
-}
-class Car implements ICar {
-
-	speed: number;
-	move(): void {
-
-		console.log("Машина едет со скоростью " + this.speed + " км/ч");
-	}
-
-	fill(): void {
-
-		console.log("Заправляем машину топливом");
-	}
+public set name(n:string){
+	this._name = n;
 }
 
-let auto = new Car();
-auto.speed = 60;
-auto.fill();
-auto.move();
+    constructor(name: string, age: number) {
+        this._name = name;
+        this._year = this.setYear(age);
+    }
+    public displayYear(): void {
+        console.log("Год рождения: " + this._year);
+    }
 
+    public displayName(): void {
+        console.log("name: " + this._name);
+    }
 
-interface FullNameBuilder {
-	(name: string, surname: string): string;
+    private setYear(age: number): number {
+        return new Date().getFullYear() - age;
+    }
 }
 
-let simpleBuilder: FullNameBuilder = function (name: string, surname: string): string {
-	return "Mr." + name + " " + surname;
-}
+let tom = new User("Tom", 24);
+tom.displayName();
+tom.displayYear();
 
-let fullName = simpleBuilder("Tony", "Montana");
-console.log(fullName);
-
-interface StringArray {
-	    [index: number]: string;
-}
-
-let phones: StringArray;
-phones = ["iPhone 7", "HTC 10", "HP Elite x3"];
-
-let myPhone: string = phones[0];
-console.log(myPhone);
-
-interface Dictionary {
-	[index: string]: string;
-}
-
-var colors: Dictionary = {};
-colors["red"] = "#ff0000";
-colors["green"] = "#00ff00";
-colors["blue"] = "#0000ff";
-
-console.log(colors["red"]);
-
-interface PersonInfo {
-	(name: string, surname: string): void;
-	fullName: string;
-	password: string;
-	authenticate(): void;
-}
-
-function personBuilder(): PersonInfo {
-
-	let person = <PersonInfo>function (name: string, surname: string): void {
-		person.fullName = name + " " + surname;
-	};
-	person.authenticate = function () {
-		console.log(person.fullName + " входит в систему с паролем " + person.password);
-	};
-	return person;
-}
-
-let tom = personBuilder();
-tom("Tom", "Simpson");
-tom.password = "qwerty";
-tom.authenticate();
+tom.name = "Tonu";
+tom.displayName();
 
 window.onload = () => {
 	var el = document.getElementById('content');

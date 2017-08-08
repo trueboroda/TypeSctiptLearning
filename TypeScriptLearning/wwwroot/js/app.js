@@ -15,48 +15,37 @@ var Greeter = (function () {
     };
     return Greeter;
 }());
-var Car = (function () {
-    function Car() {
+var User = (function () {
+    function User(name, age) {
+        this._name = name;
+        this._year = this.setYear(age);
     }
-    Car.prototype.move = function () {
-        console.log("Машина едет со скоростью " + this.speed + " км/ч");
+    Object.defineProperty(User.prototype, "name", {
+        get: function () {
+            return this._name;
+        },
+        set: function (n) {
+            this._name = n;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    User.prototype.displayYear = function () {
+        console.log("Год рождения: " + this._year);
     };
-    Car.prototype.fill = function () {
-        console.log("Заправляем машину топливом");
+    User.prototype.displayName = function () {
+        console.log("name: " + this._name);
     };
-    return Car;
+    User.prototype.setYear = function (age) {
+        return new Date().getFullYear() - age;
+    };
+    return User;
 }());
-var auto = new Car();
-auto.speed = 60;
-auto.fill();
-auto.move();
-var simpleBuilder = function (name, surname) {
-    return "Mr." + name + " " + surname;
-};
-var fullName = simpleBuilder("Tony", "Montana");
-console.log(fullName);
-var phones;
-phones = ["iPhone 7", "HTC 10", "HP Elite x3"];
-var myPhone = phones[0];
-console.log(myPhone);
-var colors = {};
-colors["red"] = "#ff0000";
-colors["green"] = "#00ff00";
-colors["blue"] = "#0000ff";
-console.log(colors["red"]);
-function personBuilder() {
-    var person = function (name, surname) {
-        person.fullName = name + " " + surname;
-    };
-    person.authenticate = function () {
-        console.log(person.fullName + " входит в систему с паролем " + person.password);
-    };
-    return person;
-}
-var tom = personBuilder();
-tom("Tom", "Simpson");
-tom.password = "qwerty";
-tom.authenticate();
+var tom = new User("Tom", 24);
+tom.displayName();
+tom.displayYear();
+tom.name = "Tonu";
+tom.displayName();
 window.onload = function () {
     var el = document.getElementById('content');
     var greeter = new Greeter(el);
