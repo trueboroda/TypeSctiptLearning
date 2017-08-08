@@ -312,7 +312,4 @@ paket-files/
 node_modules/**/*.*
 bower_components/**/*.*
 wwwroot/lib/**/*.*
-wwwroot/js/**/*.*
-
-
-
+wwwroot/js/

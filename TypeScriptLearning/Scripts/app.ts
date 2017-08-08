@@ -22,12 +22,13 @@
 }
 
 
-interface IUser {
-	id: number;
+interface IUser {	
 	name: string;
+	getInfo(): void;
+	getClassName(): void;
 }
 
-class User {
+class User implements IUser {
 
 	name: string;
 	constructor(userName: string) {
@@ -64,7 +65,7 @@ class Employee extends User {
 
 
 
-let tom: User = new User("Tom");
+let tom: IUser = new User("Tom");
 tom.getInfo();
 console.log(tom.getClassName());
 
@@ -72,7 +73,7 @@ let alice: User = new Employee("Microsoft", "Alice");
 alice.getInfo();
 console.log(alice.getClassName());
 
-let bill: Employee = new Employee("Google", "Bill");
+let bill: IUser = new Employee("Google", "Bill");
 bill.getInfo();
 console.log(bill.getClassName());
 
