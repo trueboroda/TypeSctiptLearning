@@ -5,11 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\css\site.css" />
     <Content Include="wwwroot\index.html" />
+    <Content Include="wwwroot\js\app.js" />
+    <Content Include="wwwroot\js\app.js.map" />
+    <Content Include="wwwroot\js\app.ts" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
 </Project>

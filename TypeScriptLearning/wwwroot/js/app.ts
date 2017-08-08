@@ -1,4 +1,4 @@
-﻿class Greeter {
+class Greeter {
 	element: HTMLElement;
 	span: HTMLElement;
 	timerToken: number;
@@ -39,13 +39,6 @@ if (typeof sum == "number") {
 }
 
 
-let someAnyValue: any = "hello world!";
-let strLength: number = (<string>someAnyValue).length;
-console.log(strLength); // 12
-
-let someUnionValue: string | number = "hello work";
-strLength = (<string>someUnionValue).length;
-console.log(strLength);
 
 window.onload = () => {
 	var el = document.getElementById('content');

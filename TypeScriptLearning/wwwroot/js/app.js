@@ -26,12 +26,6 @@ var sum = 36.6;
 if (typeof sum == "number") {
     console.log(sum / 6);
 }
-var someAnyValue = "hello world!";
-var strLength = someAnyValue.length;
-console.log(strLength);
-var someUnionValue = "hello work";
-strLength = someUnionValue.length;
-console.log(strLength);
 window.onload = function () {
     var el = document.getElementById('content');
     var greeter = new Greeter(el);

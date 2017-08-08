@@ -1,9 +1,0 @@
-d:\job\Projects\VS2017\Projects\TypeScriptLearning\TypeScriptLearning\bin\Debug\netcoreapp1.1\TypeScriptLearning.deps.json
-d:\job\Projects\VS2017\Projects\TypeScriptLearning\TypeScriptLearning\bin\Debug\netcoreapp1.1\TypeScriptLearning.runtimeconfig.json
-d:\job\Projects\VS2017\Projects\TypeScriptLearning\TypeScriptLearning\bin\Debug\netcoreapp1.1\TypeScriptLearning.runtimeconfig.dev.json
-d:\job\Projects\VS2017\Projects\TypeScriptLearning\TypeScriptLearning\bin\Debug\netcoreapp1.1\TypeScriptLearning.dll
-d:\job\Projects\VS2017\Projects\TypeScriptLearning\TypeScriptLearning\obj\Debug\netcoreapp1.1\TypeScriptLearning.csprojResolveAssemblyReference.cache
-d:\job\Projects\VS2017\Projects\TypeScriptLearning\TypeScriptLearning\obj\Debug\netcoreapp1.1\TypeScriptLearning.AssemblyInfo.cs
-d:\job\Projects\VS2017\Projects\TypeScriptLearning\TypeScriptLearning\bin\Debug\netcoreapp1.1\TypeScriptLearning.pdb
-d:\job\Projects\VS2017\Projects\TypeScriptLearning\TypeScriptLearning\obj\Debug\netcoreapp1.1\TypeScriptLearning.dll
-d:\job\Projects\VS2017\Projects\TypeScriptLearning\TypeScriptLearning\obj\Debug\netcoreapp1.1\TypeScriptLearning.pdb
