@@ -1,4 +1,4 @@
-﻿class Greeter {
+class Greeter {
 	element: HTMLElement;
 	span: HTMLElement;
 	timerToken: number;
