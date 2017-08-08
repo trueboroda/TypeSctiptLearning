@@ -22,30 +22,59 @@
 }
 
 
+interface IUser {
+	id: number;
+	name: string;
+}
 
-let names: string[] | string | number;
-names = "Tom";
-console.log(names); // Tom
-names = ["Alice", "Bob"];
-console.log(names[1]);  // Bob
-names = 6;
-console.log(names);
+class User {
 
-type stringOrNumberType = number | string;
+	name: string;
+	constructor(userName: string) {
 
-let sum: stringOrNumberType = 36.6
-if (typeof sum == "number") {
-	console.log(sum / 6);
+		this.name = userName;
+	}
+	getInfo(): void {
+		console.log("Имя: " + this.name);
+	}
+
+	getClassName(): string {
+		return "User";
+	}
 }
 
 
-let someAnyValue: any = "hello world!";
-let strLength: number = (<string>someAnyValue).length;
-console.log(strLength); // 12
+class Employee extends User {
+	company: string;
 
-let someUnionValue: string | number = "hello work";
-strLength = (<string>someUnionValue).length;
-console.log(strLength);
+	constructor(company: string, name: string) {
+		super(name);
+		this.company = company;
+	}
+
+	getInfo(): void {
+		super.getInfo();
+		console.log(this.name + " работает в компании " + this.company);
+	}
+
+	getClassName(): string {
+		return "Employee";
+	}
+}
+
+
+
+let tom: User = new User("Tom");
+tom.getInfo();
+console.log(tom.getClassName());
+
+let alice: User = new Employee("Microsoft", "Alice");
+alice.getInfo();
+console.log(alice.getClassName());
+
+let bill: Employee = new Employee("Google", "Bill");
+bill.getInfo();
+console.log(bill.getClassName());
 
 window.onload = () => {
 	var el = document.getElementById('content');
