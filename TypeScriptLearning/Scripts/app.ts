@@ -20,44 +20,45 @@
 	}
 }
 
-class User<T> implements IUser<T> {
-    private _id: T;
-    constructor(id:T) {
-        this._id=id;
+class Animal {
+    feed():void {
+        console.log("кормим животное");
     }
-    getId(): T {
-        return this._id;
+}
+
+class Transport {
+    speed: number=0;
+    move(): void {
+        if (this.speed == 0) {
+            console.log("Стоим на месте");
+        }
+        else if (this.speed > 0) {
+            console.log("Перемещаемся со скоростью " + this.speed + " км/ч");
+        }
     }
-	getInfo(){
-		console.log(this._id);
-	}
 }
 
-let tom = new User<number>(3);
-console.log(tom.getId()); // возвращает number
-
-let alice = new User<string>("vsf");
-console.log(alice.getId()); // возвращает string
-
-function userFactory<T>(type: { new (id:number): T; }): T {
-    return new type(1);
+class Horse implements Animal, Transport {
+    speed: number=0;
+    feed: () => void;
+    move: () => void;
 }
 
-let user = userFactory(User);
-console.log(user);
-
-interface IUser<T> {
-    getInfo():void;
+function applyMixins(derivedCtor: any, baseCtors: any[]) {
+    baseCtors.forEach(baseCtor => {
+        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+            derivedCtor.prototype[name] = baseCtor.prototype[name];
+        });
+    });
 }
 
-class UserInfo<T extends IUser<T>>{
-	getUserInfo(user: T): void{
-		user.getInfo()
-}
-}
+applyMixins(Horse, [Animal, Transport]);
 
-let userInfo = new UserInfo();
-userInfo.getUserInfo(user);
+let pony: Horse = new Horse();
+pony.feed();
+pony.move();
+pony.speed = 4;
+pony.move();
 
 window.onload = () => {
 	var el = document.getElementById('content');

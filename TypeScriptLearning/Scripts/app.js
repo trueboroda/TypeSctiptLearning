@@ -15,37 +15,47 @@ var Greeter = (function () {
     };
     return Greeter;
 }());
-var User = (function () {
-    function User(id) {
-        this._id = id;
+var Animal = (function () {
+    function Animal() {
     }
-    User.prototype.getId = function () {
-        return this._id;
+    Animal.prototype.feed = function () {
+        console.log("кормим животное");
     };
-    User.prototype.getInfo = function () {
-        console.log(this._id);
-    };
-    return User;
+    return Animal;
 }());
-var tom = new User(3);
-console.log(tom.getId());
-var alice = new User("vsf");
-console.log(alice.getId());
-function userFactory(type) {
-    return new type(1);
+var Transport = (function () {
+    function Transport() {
+        this.speed = 0;
+    }
+    Transport.prototype.move = function () {
+        if (this.speed == 0) {
+            console.log("Стоим на месте");
+        }
+        else if (this.speed > 0) {
+            console.log("Перемещаемся со скоростью " + this.speed + " км/ч");
+        }
+    };
+    return Transport;
+}());
+var Horse = (function () {
+    function Horse() {
+        this.speed = 0;
+    }
+    return Horse;
+}());
+function applyMixins(derivedCtor, baseCtors) {
+    baseCtors.forEach(function (baseCtor) {
+        Object.getOwnPropertyNames(baseCtor.prototype).forEach(function (name) {
+            derivedCtor.prototype[name] = baseCtor.prototype[name];
+        });
+    });
 }
-var user = userFactory(User);
-console.log(user);
-var UserInfo = (function () {
-    function UserInfo() {
-    }
-    UserInfo.prototype.getUserInfo = function (user) {
-        user.getInfo();
-    };
-    return UserInfo;
-}());
-var userInfo = new UserInfo();
-userInfo.getUserInfo(user);
+applyMixins(Horse, [Animal, Transport]);
+var pony = new Horse();
+pony.feed();
+pony.move();
+pony.speed = 4;
+pony.move();
 window.onload = function () {
     var el = document.getElementById('content');
     var greeter = new Greeter(el);
