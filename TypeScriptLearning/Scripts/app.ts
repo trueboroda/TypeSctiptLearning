@@ -20,46 +20,57 @@
 	}
 }
 
-class Animal {
-    feed():void {
-        console.log("кормим животное");
+namespace UserNamespace {
+ 
+    export interface IUser {
+ 
+        displayInfo():void;
     }
-}
-
-class Transport {
-    speed: number=0;
-    move(): void {
-        if (this.speed == 0) {
-            console.log("Стоим на месте");
+ 
+    export class User implements IUser {
+ 
+        private _id: number;
+        private _name: string;
+        constructor(id: number, name: string) {
+ 
+            this._id = id;
+            this._name = name;
         }
-        else if (this.speed > 0) {
-            console.log("Перемещаемся со скоростью " + this.speed + " км/ч");
+        displayInfo() {
+ 
+            console.log("id: " + this._id + "; name: " + this._name);
         }
     }
+     
+    let defaultUser: IUser = new User(2, "Tom");
 }
 
-class Horse implements Animal, Transport {
-    speed: number=0;
-    feed: () => void;
-    move: () => void;
+let alice = new UserNamespace.User(4, "Alice");
+alice.displayInfo();
+
+namespace UserNamespace.Employees {
+ 
+    export class Employee extends User {
+    }
+ 
+    export class Manager extends User { }
 }
+ 
+let bill = new UserNamespace.Employees.Employee(5, "Bill");
+bill.displayInfo();
 
-function applyMixins(derivedCtor: any, baseCtors: any[]) {
-    baseCtors.forEach(baseCtor => {
-        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-            derivedCtor.prototype[name] = baseCtor.prototype[name];
-        });
-    });
-}
 
-applyMixins(Horse, [Animal, Transport]);
+import Employee = UserNamespace.Employees.Employee;
 
-let pony: Horse = new Horse();
-pony.feed();
-pony.move();
-pony.speed = 4;
-pony.move();
+let em = new Employee(4,"Emma");
+em.displayInfo();
 
+import EmNS = UserNamespace.Employees;
+
+let m = new EmNS.Manager(4,"Manager");
+m.displayInfo();
+
+//loading
 window.onload = () => {
 	var el = document.getElementById('content');
 	var greeter = new Greeter(el);
