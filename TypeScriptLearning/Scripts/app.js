@@ -16,36 +16,36 @@ var Greeter = (function () {
     return Greeter;
 }());
 var User = (function () {
-    function User(name, age) {
-        this._name = name;
-        this._year = this.setYear(age);
+    function User(id) {
+        this._id = id;
     }
-    Object.defineProperty(User.prototype, "name", {
-        get: function () {
-            return this._name;
-        },
-        set: function (n) {
-            this._name = n;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    User.prototype.displayYear = function () {
-        console.log("Год рождения: " + this._year);
+    User.prototype.getId = function () {
+        return this._id;
     };
-    User.prototype.displayName = function () {
-        console.log("name: " + this._name);
-    };
-    User.prototype.setYear = function (age) {
-        return new Date().getFullYear() - age;
+    User.prototype.getInfo = function () {
+        console.log(this._id);
     };
     return User;
 }());
-var tom = new User("Tom", 24);
-tom.displayName();
-tom.displayYear();
-tom.name = "Tonu";
-tom.displayName();
+var tom = new User(3);
+console.log(tom.getId());
+var alice = new User("vsf");
+console.log(alice.getId());
+function userFactory(type) {
+    return new type(1);
+}
+var user = userFactory(User);
+console.log(user);
+var UserInfo = (function () {
+    function UserInfo() {
+    }
+    UserInfo.prototype.getUserInfo = function (user) {
+        user.getInfo();
+    };
+    return UserInfo;
+}());
+var userInfo = new UserInfo();
+userInfo.getUserInfo(user);
 window.onload = function () {
     var el = document.getElementById('content');
     var greeter = new Greeter(el);

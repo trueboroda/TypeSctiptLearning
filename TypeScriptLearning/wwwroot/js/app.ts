@@ -20,41 +20,44 @@ class Greeter {
 	}
 }
 
-class User {
-    private _name: string;
-    private _year: number;
-
-	public get name():string{
-		return this._name;
+class User<T> implements IUser<T> {
+    private _id: T;
+    constructor(id:T) {
+        this._id=id;
+    }
+    getId(): T {
+        return this._id;
+    }
+	getInfo(){
+		console.log(this._id);
+	}
 }
 
-public set name(n:string){
-	this._name = n;
+let tom = new User<number>(3);
+console.log(tom.getId()); // возвращает number
+
+let alice = new User<string>("vsf");
+console.log(alice.getId()); // возвращает string
+
+function userFactory<T>(type: { new (id:number): T; }): T {
+    return new type(1);
 }
 
-    constructor(name: string, age: number) {
-        this._name = name;
-        this._year = this.setYear(age);
-    }
-    public displayYear(): void {
-        console.log("Год рождения: " + this._year);
-    }
+let user = userFactory(User);
+console.log(user);
 
-    public displayName(): void {
-        console.log("name: " + this._name);
-    }
-
-    private setYear(age: number): number {
-        return new Date().getFullYear() - age;
-    }
+interface IUser<T> {
+    getInfo():void;
 }
 
-let tom = new User("Tom", 24);
-tom.displayName();
-tom.displayYear();
+class UserInfo<T extends IUser<T>>{
+	getUserInfo(user: T): void{
+		user.getInfo()
+}
+}
 
-tom.name = "Tonu";
-tom.displayName();
+let userInfo = new UserInfo();
+userInfo.getUserInfo(user);
 
 window.onload = () => {
 	var el = document.getElementById('content');
