@@ -1,0 +1,8 @@
+{
+  "name": "asp.net",
+  "private": true,
+  "directory": "bower_component",
+  "dependencies": {
+      "requirejs": "2.3.4"
+  }
+}

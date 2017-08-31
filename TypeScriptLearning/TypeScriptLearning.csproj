@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\requirejs\**" />
+    <Content Remove="wwwroot\lib\requirejs\**" />
+    <EmbeddedResource Remove="wwwroot\lib\requirejs\**" />
+    <None Remove="wwwroot\lib\requirejs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\.bowerrc" />
+    <Content Include="wwwroot\bower.json" />
     <Content Include="wwwroot\css\site.css" />
     <Content Include="wwwroot\index.html" />
     <Content Include="wwwroot\js\app.js" />
@@ -17,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\img\" />
+    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
 </Project>

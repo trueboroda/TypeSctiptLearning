@@ -20,55 +20,27 @@
 	}
 }
 
-namespace UserNamespace {
- 
-    export interface IUser {
- 
-        displayInfo():void;
-    }
- 
-    export class User implements IUser {
- 
-        private _id: number;
-        private _name: string;
-        constructor(id: number, name: string) {
- 
-            this._id = id;
-            this._name = name;
-        }
-        displayInfo() {
- 
-            console.log("id: " + this._id + "; name: " + this._name);
-        }
-    }
-     
-    let defaultUser: IUser = new User(2, "Tom");
-}
+console.log('hello');
 
-let alice = new UserNamespace.User(4, "Alice");
-alice.displayInfo();
+import {  Smartphone as Phone } from "./mobiles";
 
-namespace UserNamespace.Employees {
- 
-    export class Employee extends User {
-    }
- 
-    export class Manager extends User { }
-}
- 
-let bill = new UserNamespace.Employees.Employee(5, "Bill");
-bill.displayInfo();
+let iphone: Phone = new Phone();
+iphone.company = "Apple";
+iphone.model = "iPhone 7";
+iphone.displayInfo();
 
 
-import Employee = UserNamespace.Employees.Employee;
+////import All
+//import * as mobiles from "./mobiles"; // псевдоним для модуля - mobiles
+//let tablet: mobiles.Device = new mobiles.Tablet();
+//tablet.displayInfo();
 
-let em = new Employee(4,"Emma");
-em.displayInfo();
+////def export
 
-import EmNS = UserNamespace.Employees;
+//import SmartWatch from "./smartwatch";
+//let watch = new SmartWatch("iwatch");
+//console.log(watch.model);
 
-let m = new EmNS.Manager(4,"Manager");
-m.displayInfo();
 
 //loading
 window.onload = () => {
